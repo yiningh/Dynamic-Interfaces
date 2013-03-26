@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript">
+			var helloSound = new sound('http://thelab.thingsinjars.com/web-audio-tutorial/hello.mp3');
+			var backgroundSound = new sound('http://thelab.thingsinjars.com/web-audio-tutorial/nokia.mp3');
+			var beatSound = new sound('http://thelab.thingsinjars.com/web-audio-tutorial/dustbin.mp3');
+			var gunSound = new sound('http://thelab.thingsinjars.com/web-audio-tutorial/Church-Schellingwoude.mp3');
+		</script>
+	</head>
+
+	<body>
+		<section id="screen1">
+			<article class="join-wrapper">
+				<script>
+				$(document).ready(function(){
+					$('.join-wrapper ul a').each(function(){
+					    $(this).click(function(){
+					    	$('.join-wrapper ul a').removeClass('highlighted');
+					        $(this).addClass('highlighted');
+					    });
+					});
+
+					$('#start').click(function(){
+						backgroundSound.start();
+					});
+				});
+				</script>
+				<h1>Choose your mermaid voice</h1>
+					<ul>
+						<a href="#"><li><img src="img/user.jpg">
+							<h2>Jojo</h2>
+								<p>The cutest voice with tiny tone deaf.</p></li></a>
+						<a href="#"><li><img src="img/user.jpg">
+							<h2>Maxie</h2>
+								<p>The only voice with accurancy in pitch.</p></li></a>
+						<a href="#"><li><img src="img/user.jpg">
+							<h2>Yiyi</h2>
+								<p>The hangover voice due to the beers last night.</p><li></a>
+					</ul>	
+						<a href="#screen2"><div id="start"><P class="button">start<p></div></a>
+			</article>
+		</section>
+
+		<section id="screen2">
+			<div style="display:block">
+				<button><a href="#screen1">QUIT</a></button>
+				<button onclick="helloSound.play(1)">play</button>
+				<button onclick="playBeats()">test beats</button>
+				<button onclick="helloSound.play(3)">play on beat 3</button>
+			</div>
+			<section id="user-area">
+				<div id="user-1"><img src="img/user.jpg"><p id="user-1-name">Jojo</p></div>
+				<div id="user-2"><img src="img/user.jpg"><p id="user-2-name">Maxie</p></div>
+				<!-- <div id="user-3"><img src="img/user.jpg"><p id="player-3-name">player3</p></div>  -->
+			</section>
+			
+			<section id="panel">
+<!-- 				<div id="bar-section">
+					<div id="bar"></div>
+				</div> -->
+				<div id="beat-wrapper">
+					<ul id="beat-1">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+					<ul id="beat-2">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+					<ul id="beat-3">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+					<ul id="beat-4">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+					<ul id="beat-5">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+					<ul id="beat-6">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+					<ul id="beat-7">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+					<ul id="beat-8">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+					<ul id="beat-9">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+					<ul id="beat-10">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+					<ul id="beat-11">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+					<ul id="beat-12">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+					<ul id="beat-13">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+					<ul id="beat-14">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+					<ul id="beat-15">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+					<ul id="beat-16">
+						<li id="pitch-1"></li>
+						<li id="pitch-2"></li>
+						<li id="pitch-3"></li>
+						<li id="pitch-4"></li>
+						<li id="pitch-5"></li>
+					</ul>
+				</div>
+
+			</section>
+
+		</section>
+	</body>
+
+</html>
