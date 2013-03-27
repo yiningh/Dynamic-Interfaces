@@ -34,7 +34,38 @@ function init() {
     } else {
         throw new Error('AudioContext not supported. :(');
     }
+    $('#voice-one').append('<p>voice one</p>');
+    $('#voice-two').append('<p>voice two</p>');
+    $('#voice-three').append('<p>voice three</p>');
+    $('#voice-four').append('<p>voice four</p>');
+    $('#dragging-area article').draggable({
+        cursor:'move',
+        snap: '#beat-wrapper ul li',
+        helper:'clone',
+    });
+    $('#beat-wrapper ul li').droppable({
+        accept: '#dragging-area article', 
+        hoverClass: 'hovered',
+        drop: function(event, ui) {
+            if (ui.draggable.is('#voice-one')) {
+                $(this).addClass('clicked');
+            } 
+            if (ui.draggable.is('#voice-two')){
+                $(this).addClass('clicked-two');
+            }
+            if (ui.draggable.is('#voice-three')){
+                $(this).addClass('clicked-three');
+            }
+            if (ui.draggable.is('#voice-four')){
+                $(this).addClass('clicked-four');
+            }
+        }
+    });
 }
+
+function dropEvt(id){
+   alert(this.id);
+}   
 
 function playBeats() {
     startTime = audioContext.currentTime;
