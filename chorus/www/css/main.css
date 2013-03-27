@@ -105,6 +105,9 @@ h1{
 	background: black !important;
 	z-index: 2;
 }
+.clicked{
+	background-color: red !important;
+}
 /*============================JOIN SCREEN=============================*/
 .join-wrapper{
 	width:70%;

@@ -4,6 +4,7 @@
 		<link rel="stylesheet" type="text/css" href="css/normalize.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 		<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript" src="js/click-script.js"></script>
 		<script type="text/javascript">
 			var helloSound = new sound('http://thelab.thingsinjars.com/web-audio-tutorial/hello.mp3');
 			var backgroundSound = new sound('http://thelab.thingsinjars.com/web-audio-tutorial/nokia.mp3');
@@ -15,20 +16,6 @@
 	<body>
 		<section id="screen1">
 			<article class="join-wrapper">
-				<script>
-				$(document).ready(function(){
-					$('.join-wrapper ul a').each(function(){
-					    $(this).click(function(){
-					    	$('.join-wrapper ul a').removeClass('highlighted');
-					        $(this).addClass('highlighted');
-					    });
-					});
-
-					$('#start').click(function(){
-						backgroundSound.start();
-					});
-				});
-				</script>
 				<h1>Choose your mermaid voice</h1>
 					<ul>
 						<a href="#"><li><img src="img/user.jpg">
@@ -47,10 +34,11 @@
 
 		<section id="screen2">
 			<div style="display:block">
-				<button><a href="#screen1">QUIT</a></button>
-				<button onclick="helloSound.play(1)">play</button>
-				<button onclick="playBeats()">test beats</button>
+				<button onclick="stopBeat()"><a href="#screen1">QUIT</a></button>
 				<button onclick="helloSound.play(3)">play on beat 3</button>
+				<button onclick="playAll()">play all</button>
+				<button onclick="stopAll()">stop all</button>
+				<button onclick="helloSound.play()"> hello suond</button>
 			</div>
 			<section id="user-area">
 				<div id="user-1"><img src="img/user.jpg"><p id="user-1-name">Jojo</p></div>

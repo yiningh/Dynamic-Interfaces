@@ -1,14 +1,32 @@
-
-$(document).ready(function() {
-	init();
-    load();
-});
-
 var beat = -1;
 var bar = 0;
 var startTime;
 var tempo = 80; // BPM (beats per minute)
 var eighthNoteTime = (60 / tempo) / 2;
+
+/*--load sound sources--*/
+var ah01 = new sound('audio/ah01.wav');
+var ah02 = new sound('audio/ah02.wav');
+var ah03 = new sound('audio/ah03.wav');
+var ah04 = new sound('audio/ah04.wav');
+var ah05 = new sound('audio/ah05.wav');
+var aya01 = new sound('audio/aya01.wav');
+var aya02 = new sound('audio/aya02.wav');
+var aya03 = new sound('audio/aya03.wav');
+var aya04 = new sound('audio/aya04.wav');
+var aya05 = new sound('audio/aya05.wav');
+
+/*end of load sound source*/
+var soundClipsAh = [ah01, ah02, ah03, ah04, ah05];
+var ah01s, ah02s, ah03s, ah04s, ah05s;
+var soundClipsAhS = [ah01s, ah02s, ah03s, ah04s, ah05s];
+var soundClipsAya = [aya01, aya02, aya03. aya04, aya05];
+var aya01s, aya02s, aya03s, aya04s, aya05s;
+var soundClipsAyaS = [aya01s, aya02s, aya03s, aya04s, aya05s];
+
+$(document).ready(function() {
+    init();
+});
 
 function init() {
     if(!window.audioContext){
@@ -16,14 +34,33 @@ function init() {
     } else {
         throw new Error('AudioContext not supported. :(');
     }
-    return false;
+}
+
+function playBeats() {
+    startTime = audioContext.currentTime;
+    var time = startTime;
+    console.log('in beat loop '+soundClipsAh[4])
+    for(var i = 0; i < 5; i++){
+        if(soundClipsAhS[i] == true){
+            soundClipsAh[i].play(time + 1 * eighthNoteTime);
+        }
+        if(soundClipsAyaS[i] == true){
+            soundClipsAya[i].play(time + 1 * eighthNoteTime);
+        }
+    }
+}
+
+function stopBeat(){
+    beat = 18;
 }
 
 function load(){
+    beat = 1;
     playBeats();
     function addBeat(){
+        console.log("in load loop " +ah05s);
         beat += 1;
-        if (beat >= 17){
+        if (beat == 17){
             beat = 1;
             bar = 0;
             playBeats();
@@ -33,13 +70,13 @@ function load(){
     }
     setInterval(addBeat,eighthNoteTime*1000);
 }
-
 //audio object
 function sound(source){
     var that = this;
     that.source = source;
     that.buffer = null;
     that.isLoaded = false;
+    that.startSound;
 
     var getSound = new XMLHttpRequest();
     getSound.open('GET', that.source, 'true');
@@ -48,38 +85,38 @@ function sound(source){
         audioContext.decodeAudioData(getSound.response, function(buffer){
             that.buffer = buffer;
             that.isLoaded = true;
+            if(that.isLoaded == true){
+                that.startSound = audioContext.createBufferSource();
+                that.startSound.buffer = that.buffer;
+                that.startSound.connect(audioContext.destination);
+            }
         });
     }
     getSound.send();
 }
 
-function playBeats() {
-    console.log('playbeats loop');
-    startTime = audioContext.currentTime;
-    var time = startTime;
-    console.log('playbeats time is at '+ time);
-    gunSound.play(time+2 * eighthNoteTime);
-    gunSound.play(time+6 * eighthNoteTime);
+sound.prototype.play = function(time){
+    if(!time){time = 0;}else{time = time;}
+    if(this.isLoaded == true){
+        var startSound = audioContext.createBufferSource();
+        startSound.buffer = this.buffer;
+        startSound.connect(audioContext.destination);
+        startSound.noteOn(time);
+    }
 }
 
-sound.prototype.play = function(time){
+sound.prototype.stop = function(time){
+    if(!time){time = 0;}else{time = time;}
     if(this.isLoaded == true){
-        if(!time){time = 0;}else{time = time;}
-        var playSound = audioContext.createBufferSource();
-        playSound.buffer = this.buffer;
-        playSound.connect(audioContext.destination);
-        playSound.noteOn(time);
+        this.startSound.noteOff(time);
     }
 }
 
 sound.prototype.start = function(){
     if(this.isLoaded == true){
-        var startSound = audioContext.createBufferSource();
-        startSound.buffer = this.buffer;
-        startSound.loop = true;
-        startSound.playbackRate.value = 2.0;
-        startSound.connect(audioContext.destination);
-        startSound.noteOn(1);
+        this.startSound.loop = true;
+        this.startSound.playbackRate.value = 1.0;
+        this.startSound.noteOn(0);
     }
 }
 
