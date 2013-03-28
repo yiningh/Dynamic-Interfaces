@@ -106,7 +106,43 @@ h1{
 	z-index: 2;
 }
 .clicked{
-	background-color: red !important;
+	background-color: #ffa676 !important;
+}
+.clicked-two{
+	background-color: #e69d00 !important;
+}
+.clicked-three{
+	background-color: #ff4f46 !important;
+}
+.clicked-four{
+	background-color: #ff46b7 !important;
+}
+/*============================DRAGGING AREA===========================*/
+#dragging-area article{
+	display: inline-block;
+	padding: 0 2%;
+	margin: 0 3%;
+	color: black;
+}
+#dragging-area article:hover{
+	cursor: move;
+}
+#dragging-area article.ui-draggable-dragging { opacity:0.7; }
+
+#beat-wrapper ul li.hovered{
+	background-color: #666;
+}
+#voice-one{
+	background-color: #ffa676;
+}
+#voice-two{
+	background-color: #e69d00;
+}
+#voice-three{
+	background-color: #ff4f46;
+}
+#voice-four{
+	background-color: #ff46b7;
 }
 /*============================JOIN SCREEN=============================*/
 .join-wrapper{
