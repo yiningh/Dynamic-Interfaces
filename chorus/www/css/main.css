@@ -98,8 +98,14 @@ h1{
 	width:100%;
 	height: 11%;
 	margin:4px 0;
-	border-radius: 4px;
+	border-radius: 2px;
 	background-color: white;
+	-webkit-box-shadow: 1px 1px 8px rgba(0,0,0,0.15);
+	-moz-box-shadow: 1px 1px 8px rgba(0,0,0,0.15);
+	-o-box-shadow: 1px 1px 8px rgba(0,0,0,0.15);
+	box-shadow: 1px 1px 8px rgba(0,0,0,0.15);
+	border-color: #787878 #616161 #4E4E4E;
+	border-color: rgba(0,0,0,0.48) rgba(0,0,0,0.54) rgba(0,0,0,0.6);
 }
 .on-beat{
 	background: black !important;
@@ -130,7 +136,7 @@ h1{
 #dragging-area article.ui-draggable-dragging { opacity:0.7; }
 
 #beat-wrapper ul li.hovered{
-	background-color: #666;
+	opacity: 0.5;
 }
 #voice-one{
 	background-color: #ffa676;
