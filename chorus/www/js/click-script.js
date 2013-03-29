@@ -2,7 +2,7 @@ $(document).ready(function(){
 	var beat;
 	var startTime;
 	var tempo = 80;
-	var eighthNoteTime = 1.5;
+	var eighthNoteTime = 0.375;
 
 	var username;
 	var joojoo, maxie, yiyi;
