@@ -29,7 +29,7 @@ var server = http.createServer(function(req,res){
 	fs.exists(fileToLoad, function(doesItExist){
 		if(!doesItExist){
 			httpStatusCode = 404;
-			fileToLoad = webroot + "index.html";//404 swap
+			fileToLoad = webroot + "404.html";
 		}
 
 		fileBytes = fs.readFileSync(fileToLoad);
@@ -44,20 +44,26 @@ server.listen(8080, '127.0.0.1');
 var socketServer = io.listen(server);
 socketServer.sockets.on('connection',function(socket){
 
-	socket.on('play',function() {
-		socket.emit('play');
-		socket.broadcast.emit('play');
-		console.log("received:  " + "play");
+	socket.on('someone joined',function(data) {
+		if( data.username == 'joojoo'){
+			socket.broadcast.emit('joojoo joined');
+		}
+		if( data.username == 'maxie'){
+			socket.broadcast.emit('maxie joined');
+		}
+		if( data.username == 'yiyi'){
+			socket.broadcast.emit('yiyi joined');
+		}
+		console.log("received:  " + "someone joined");
 	});
-	socket.on('stop',function() {
-		socket.emit('stop');
-		socket.broadcast.emit('stop');
-		console.log("received:  " + "stop");
+	socket.on('joo voice', function(data){
+		socket.broadcast.emit('joo voice', data);
 	});
-	socket.on('change',function() {
-		socket.emit('change');
-		socket.broadcast.emit('change');
-		console.log("received:  " + "change");
+	socket.on('maxie voice', function(data){
+		socket.broadcast.emit('maxie voice', data);
+	});
+	socket.on('joo voice', function(data){
+		socket.broadcast.emit('yiyi voice', data);
 	});
 	
 });

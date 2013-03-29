@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 	<head>
 		<title>Mermaid Chorus</title>
-		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<link rel="stylesheet" type="text/css" href="css/normalize.css">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="js/script.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
 		<script type="text/javascript" src="js/click-script.js"></script>
-		<script type="text/javascript">
-			var helloSound = new sound('http://thelab.thingsinjars.com/web-audio-tutorial/hello.mp3');
-			var backgroundSound = new sound('http://thelab.thingsinjars.com/web-audio-tutorial/nokia.mp3');
-			var beatSound = new sound('http://thelab.thingsinjars.com/web-audio-tutorial/dustbin.mp3');
-			var gunSound = new sound('http://thelab.thingsinjars.com/web-audio-tutorial/Church-Schellingwoude.mp3');
-		</script>
+
 	</head>
 
 	<body>
@@ -36,18 +30,16 @@
 
 		<section id="screen2">
 			<div style="display:block">
-				<button onclick="stopBeat()"><a href="#screen1">QUIT</a></button>
+				<button id="quit"><a href="#screen1">QUIT</a></button>
 			</div>
 			<section id="user-area">
-				<div id="user-1"><img src="img/user.jpg"><p id="user-1-name">Jojo</p></div>
-				<div id="user-2"><img src="img/user.jpg"><p id="user-2-name">Maxie</p></div>
+<!-- 				<div id="user-1"><img src="img/user.jpg"><p id="user-1-name">Jojo</p></div>
+				<div id="user-2"><img src="img/user.jpg"><p id="user-2-name">Maxie</p></div> -->
 				<!-- <div id="user-3"><img src="img/user.jpg"><p id="player-3-name">player3</p></div>  -->
 			</section>
 			
 			<section id="panel">
-<!-- 				<div id="bar-section">
-					<div id="bar"></div>
-				</div> -->
+
 				<div id="beat-wrapper">
 					<ul id="beat-1">
 						<li id="pitch-1"></li>
@@ -162,12 +154,6 @@
 						<li id="pitch-80"></li>
 					</ul>
 				</div>
-				<section id="dragging-area">
-					<article id="voice-one"></article>
-					<article id="voice-two"></article>
-					<article id="voice-three"></article>
-					<article id="voice-four"></article>
-				</section>
 
 			</section>
 
