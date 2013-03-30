@@ -1,68 +1,143 @@
+
+var beat;
+var startTime;
+var tempo = 80;
+var eighthNoteTime = (60/tempo)/2;
+
+var username;
+var joojoo, maxie, yiyi;
+var beat1, beat2, beat3, beat4, beat5, beat6, beat7, beat8, beat9, beat10, beat11, beat12, beat13, beat14, beat15, beat16;
+var pitches = [];
+var joo = [];
+var max = [];
+var yi = [];
+
+var ah01 = new sound('audio/max/dingdong01.wav');
+var ah02 = new sound('audio/max/dingdong02.wav');
+var ah03 = new sound('audio/max/dingdong03.wav');
+var ah04 = new sound('audio/max/dingdong04.wav');
+var ah05 = new sound('audio/max/dingdong05.wav');
+var aya01 = new sound('audio/joo/mi01.wav');
+var aya02 = new sound('audio/joo/mi02.wav');
+var aya03 = new sound('audio/joo/mi03.wav');
+var aya04 = new sound('audio/joo/mi04.wav');
+var aya05 = new sound('audio/joo/mi05.wav');
+var dd01 = new sound('audio/yiyi/ew01.wav');
+var dd02 = new sound('audio/yiyi/ew02.wav');
+var dd03 = new sound('audio/yiyi/ew03.wav');
+var dd04 = new sound('audio/yiyi/ew04.wav');
+var dd05 = new sound('audio/yiyi/ew05.wav');
+
+//var drum = new sound('audio/drum01.wav');
+
+var maxVoice = [ah05, ah04, ah03, ah02, ah01];
+var jooVoice = [aya05, aya04, aya03, aya02, aya01];
+var yiVoice = [dd05, dd04, dd03, dd02, dd01];
+
+var socket = io.connect('http://localhost');
+
+window.onload = function() {
+    document.location.hash = "";
+    someoneLeft();
+} 
+
 $(document).ready(function(){
-	var beat;
-	var startTime;
-	var tempo = 80;
-	var eighthNoteTime = 1.5;
-
-	var username;
-	var joojoo, maxie, yiyi;
-	var beat1, beat2, beat3, beat4, beat5, beat6, beat7, beat8, beat9, beat10, beat11, beat12, beat13, beat14, beat15, beat16;
-	var pitches = [];
-	var joo = [];
-	var max = [];
-	var yi = [];
-
-	var ah01 = new sound('audio/max/dingdong01.wav');
-	var ah02 = new sound('audio/max/dingdong02.wav');
-	var ah03 = new sound('audio/max/dingdong03.wav');
-	var ah04 = new sound('audio/max/dingdong04.wav');
-	var ah05 = new sound('audio/max/dingdong05.wav');
-	var aya01 = new sound('audio/joo/mama01.wav');
-	var aya02 = new sound('audio/joo/mama02.wav');
-	var aya03 = new sound('audio/joo/mama03.wav');
-	var aya04 = new sound('audio/joo/mama04.wav');
-	var aya05 = new sound('audio/joo/mama05.wav');
-	var dd01 = new sound('audio/yiyi/ew01.wav');
-	var dd02 = new sound('audio/yiyi/ew02.wav');
-	var dd03 = new sound('audio/yiyi/ew03.wav');
-	var dd04 = new sound('audio/yiyi/ew04.wav');
-	var dd05 = new sound('audio/yiyi/ew05.wav');
-
-	//var drum = new sound('audio/drum01.wav');
-
-	var maxVoice = [ah05, ah04, ah03, ah02, ah01];
-	var jooVoice = [aya05, aya04, aya03. aya02, aya01];
-	var yiVoice = [dd05, dd04, dd03, dd02, dd01];
-
-	var socket = io.connect('http://localhost');
-
+    $.cookie('cookieUsername', username);
 	socket.on('joojoo joined', function(data){
-		console.log('joojoo joined');
-		$('#joojoo').css({'opacity': '0.5', 'cursor': 'default'});
+		$('#joojoo').addClass('in-use');
 		$('#joojoo h2').text('SOLD OUT');
 		$('#joojoo p').text('Joojoo will be in stock soon.');
 	});
 	socket.on('maxie joined', function(data){
-		console.log('maxie joined');
-		$('#maxie').css({'opacity': '0.5', 'cursor': 'default'});
+		$('#maxie').addClass('in-use');
 		$('#maxie h2').text('SOLD OUT');
 		$('#maxie p').text('Maxie is too popular. 0 left.');
 	});
 	socket.on('yiyi joined', function(data){
-		console.log('yiyi joined');
-		$('#yiyi').css({'opacity': '0.5', 'cursor': 'default'});
+		$('#yiyi').addClass('in-use');
 		$('#yiyi h2').text('SOLD OUT');
-		$('#yiyi p').text('Yiyi is out of print. Go check in eBay.' );
+		$('#yiyi p').text('Yiyi is out of print. Go check on eBay.' );
 	});
 	socket.on('joo voice', function(data){
 		joo = data.sounds;
+        for (var i = 0; i < 80; i ++){
+            if (joo[i] == true){
+                $('#pitch-'+[i+1]).addClass('jooClicked');
+            }
+            if (joo[i] == false){
+                $('#pitch-'+[i+1]).removeClass('jooClicked');
+            }
+        }
 	});
 	socket.on('maxie voice', function(data){
 		max = data.sounds;
+        for (var i = 0; i < 80; i ++){
+            if (max[i] == true){
+                $('#pitch-'+[i+1]).addClass('maxClicked');
+            }
+            if (max[i] == false){
+                $('#pitch-'+[i+1]).removeClass('maxClicked');
+            }
+        }
 	});
 	socket.on('yiyi voice', function(data){
 		yi = data.sounds;
+        for (var i = 0; i < 80; i ++){
+            if (yi[i] == true){
+                $('#pitch-'+[i+1]).addClass('yiClicked');
+            }
+            if (yi[i] == false){
+                $('#pitch-'+[i+1]).removeClass('yiClicked');
+            }
+        }
 	});
+    socket.on('new member joined', function(data){
+        var data = {};
+        data.jooHasSong = joo;
+        data.maxHasSong = max;
+        data.yiHasSong = yi;
+        socket.emit('current state', data);
+    });
+    socket.on('tell whos in here', function(){
+        var data = {};
+        data.username = username;
+        socket.emit('I am already in use', data);
+    });
+    socket.on('current state', function(data){
+        joo = data.jooHasSong;
+        max = data.maxHasSong;
+        yi = data.yiHasSong;
+    });
+    socket.on('someone left', function(data){
+        console.log(data.username + ' left');
+        if(data.username == 'joojoo'){
+            $('#joojoo').removeClass('in-use');
+            for (var i = 0; i < 80; i++) {
+                joo[i] = false;
+            };
+            $('#beat-wrapper ul li').removeClass('jooClicked');
+            $('#joojoo h2').text('Joojoo');
+            $('#joojoo p').text('The cutest voice with tiny tone deaf.');
+        }
+        if(data.username == 'maxie'){
+            $('#maxie').removeClass('in-use');
+            for (var i = 0; i < 80; i++) {
+                max[i] = false;
+            };
+            $('#beat-wrapper ul li').removeClass('maxClicked');
+            $('#maxie h2').text('Maxie');
+            $('#maxie p').text('The only voice with accurancy in pitch.');            
+        }
+        if(data.username == 'yiyi'){
+            $('#yiyi').removeClass('in-use');
+            for (var i = 0; i < 80; i++) {
+                yi[i] = false;
+            };
+            $('#beat-wrapper ul li').removeClass('yiClicked');
+            $('#yiyi h2').text('Yiyi');
+            $('#yiyi p').text('The hangover voice due to the beers last night.'); 
+        }
+    });
 
 	init();
 
@@ -70,29 +145,23 @@ $(document).ready(function(){
 	    $('.join-wrapper ul a').click(function(){
 	    	$('.join-wrapper ul a').removeClass('highlighted');
 	        $(this).addClass('highlighted');
-	        if( (this.id) == 'joojoo'){username = 'joojoo';}
-	        if( (this.id) == 'maxie'){username = 'maxie';}
-	        if( (this.id) == 'yiyi'){username = 'yiyi';}
+	        if( (this.id) == 'joojoo'){username = 'joojoo'; $.cookie('cookieUsername', 'joojoo');}
+	        if( (this.id) == 'maxie'){username = 'maxie'; $.cookie('cookieUsername', 'maxie');}
+	        if( (this.id) == 'yiyi'){username = 'yiyi'; $.cookie('cookieUsername', 'yiyi');}
 	    });
 	});
 
 	$('#start').click(function(){
 	    if(username != ''){
-	    	data = {};
+	    	var data = {};
 	    	data.username = username;
 	    	socket.emit('someone joined', data);
 		}
+        beat = 1;
 		//drum.start();
-		load();
 	});
 	$('#quit').click(function(){
-	    if(username != ''){
-	    	data = {};
-	    	data.username = username;
-	    	socket.emit('someone left', data);
-		}
-		//drum.stop();
-		stopBeat();
+        someoneLeft();
 	});
 
 	$('#beat-wrapper ul li').click(function(){
@@ -119,7 +188,7 @@ $(document).ready(function(){
 		        }
 		    }
 
-		} else{
+		}else{
 			$(this).addClass('clicked');
             for(var i = 0; i < 80; i++){
                 if( this.id == ('pitch-'+ [i+1])){pitches[i] = true;}
@@ -141,37 +210,39 @@ $(document).ready(function(){
             }
 		}
 	    if(username == 'joojoo'){
-	    	data = {};
+	    	var data = {};
 	    	data.username = 'joojoo';
 	    	data.sounds = joo;
 	    	socket.emit('joo voice', data);
 		}
 	    if(username == 'maxie'){
-	    	data = {};
+	    	var data = {};
 	    	data.username = 'maxie';
 	    	data.sounds = max;
 	    	socket.emit('maxie voice', data);
 		}
 	    if(username == 'yiyi'){
-	    	data = {};
+	    	var data = {};
 	    	data.username = 'yiyi';
 	    	data.sounds = yi;
 	    	socket.emit('yiyi voice', data);
 		}
 	});
 
-/*=======================*===============================*/
+});
+
 function init() {
     if(!window.audioContext){
         audioContext = new webkitAudioContext;
     } else {
         throw new Error('AudioContext not supported. :(');
     }
+    load();
 }
 
 function stopBeat(){
     beat = 100;
-    drum.stop();
+    //drum.stop();
 }
 
 function load(){
@@ -232,7 +303,7 @@ sound.prototype.stop = function(time){
 sound.prototype.start = function(){
     if(this.isLoaded == true){
         this.startSound.loop = true;
-        this.startSound.playbackRate.value = 1.0;
+        this.startSound.playbackRate.value = 2.0;
         this.startSound.noteOn(0);
     }
 }
@@ -240,6 +311,7 @@ sound.prototype.start = function(){
 function playBeats() {
     startTime = audioContext.currentTime;
     var time = startTime;
+
     for(var i =0; i < 5; i ++){
         if(joo[i] == true){jooVoice[i].play(time + 1 *eighthNoteTime);}
         if(joo[5+i] == true){jooVoice[i].play(time + 2 *eighthNoteTime);}
@@ -275,7 +347,7 @@ function playBeats() {
         if(max[70+i] == true){maxVoice[i].play(time + 15 *eighthNoteTime);}
         if(max[75+i] == true){maxVoice[i].play(time + 16 *eighthNoteTime);}
         
-        if(yi[i] == true){maxVoice[i].play(time + 1 *eighthNoteTime);}
+        if(yi[i] == true){yiVoice[i].play(time + 1 *eighthNoteTime);}
         if(yi[5+i] == true){yiVoice[i].play(time + 2 *eighthNoteTime);}
         if(yi[10+i] == true){yiVoice[i].play(time + 3 *eighthNoteTime);}
         if(yi[15+i] == true){yiVoice[i].play(time + 4 *eighthNoteTime);}
@@ -293,6 +365,38 @@ function playBeats() {
         if(yi[75+i] == true){yiVoice[i].play(time + 16 *eighthNoteTime);}
         
     }
+}
+
+function someoneLeft(){
+    var data = {};
+    data.username = username;
+    socket.emit('someone left', data);
+    stopBeat();
+    $('.join-wrapper ul a').removeClass('highlighted');
+    for(var i = 0; i <80; i++){
+        pitches[i] = false;
+    }
+    if(username == 'joojoo'){
+        for(var i = 0; i < 80; i++){
+            joo[i] = false;
+        }
+        $('#joojoo').removeClass('in-use');
+    }
+    if(username == 'maxie'){
+        for(var i = 0; i < 80; i++){
+            max[i] = false;
+        }
+        $('#maxie').removeClass('in-use');
+    }
+    if(username == 'yiyi'){
+        for(var i = 0; i < 80; i++){
+            yi[i] = false;
+        }
+        $('#yiyi').removeClass('in-use');
+    }
+    socket.emit('someone is about to join');
+    $('#beat-wrapper ul li').removeClass('clicked');
+    username = '';
 }
 
 function beatVisualizer(){
@@ -362,5 +466,3 @@ function beatVisualizer(){
     }
 
 }
-
-});

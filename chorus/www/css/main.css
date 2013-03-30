@@ -111,6 +111,15 @@ h1{
 	background: black !important;
 	z-index: 2;
 }
+.jooClicked{
+	background-color: rgba(245, 226, 242, 0.5) !important;
+}
+.maxClicked{
+	background-color: rgba(226, 245, 231, 0.5) !important;
+}
+.yiClicked{
+	background-color: rgba(245, 231, 231, 0.5) !important;
+}
 .clicked{
 	background-color: #ffa676 !important;
 }
@@ -199,6 +208,10 @@ h1{
 }
 .button:hover{
 	opacity: 0.6;
+}
+.in-use{
+	opacity: 0.5;
+	cursor: default;
 }
 /*=====media queries===========*/
 @media screen and (max-width: 320px){

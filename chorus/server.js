@@ -54,7 +54,12 @@ socketServer.sockets.on('connection',function(socket){
 		if( data.username == 'yiyi'){
 			socket.broadcast.emit('yiyi joined');
 		}
-		console.log("received:  " + "someone joined");
+		socket.broadcast.emit('new member joined');
+
+	});
+	socket.on('someone is about to join', function(){
+		console.log('recieved someone is about to join')
+		socket.broadcast.emit('tell whos in here');
 	});
 	socket.on('joo voice', function(data){
 		socket.broadcast.emit('joo voice', data);
@@ -62,8 +67,28 @@ socketServer.sockets.on('connection',function(socket){
 	socket.on('maxie voice', function(data){
 		socket.broadcast.emit('maxie voice', data);
 	});
-	socket.on('joo voice', function(data){
+	socket.on('yiyi voice', function(data){
 		socket.broadcast.emit('yiyi voice', data);
+	});
+	socket.on('I am already in use', function(data){
+		if (data.username != ''){
+			if (data.username == 'joojoo'){
+				socket.broadcast.emit('joojoo joined');
+			}
+			if (data.username == 'maxie'){
+				socket.broadcast.emit('maxie joined');
+			}
+			if (data.username == 'yiyi'){
+				socket.broadcast.emit('yiyi joined');
+			}
+		}
+	});
+	socket.on('current state', function(data){
+		socket.broadcast.emit('current state', data);
+		socket.emit('current state', data);
+	});
+	socket.on('someone left', function(data){
+		socket.broadcast.emit('someone left', data);
 	});
 	
 });
