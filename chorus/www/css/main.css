@@ -6,13 +6,25 @@ body, #screen1, #screen2{
 	width: 100%;
 	height: 100%;
 	background-color: #ccc;
+	font-family: 'Helvatica', sans-serif;
+	background-image: url('../img/bg02.jpg');
 }
 a{
 	text-decoration: none;
 }
 h1{
 	font-size: 300%;
+	text-decoration: none;
+	font-family: 'Emilys Candy', cursive;
+	color: #333;
 }
+h2{
+	font-family: 'Gabriela', serif;
+	color: #333;
+}
+#joojoo h2, #joojoo p{color:#5bbbb5;}
+#maxie h2, #maxie p{color:#f32a64;}
+#yiyi h2, #yiyi p{color:#fda033;}
 #screen1{
 	position: absolute;
 	background-color: #efefef;
@@ -45,8 +57,11 @@ h1{
 
 #user-area{
 	display: inline-block;
-	margin-left: 1%;
-	width:5%;
+	width:80%;
+	margin-top: 21px;
+}
+#user-area div{
+	display: inline-block;
 }
 #user-area img{
 	max-width: 80px;
@@ -60,7 +75,7 @@ h1{
 	display: inline-block;
 	margin: 0;
 	text-align: center;
-	width: 65%;
+	width: 100%;
 	height: 50%;
 }
 #bar-section{
@@ -80,23 +95,24 @@ h1{
 }
 #beat-wrapper{
 	padding: 0;
-	margin: 0;
+	margin: 1% 0;
 	width: 100%;
-	height:100%;
+	height:auto;
 }
 #panel ul{
 	display: inline-block;
 	padding:0;
-	margin-right: 1%;
+	margin-right: 5px;
 	width:4%;
 	height:100%;
 }
 #panel ul li{
 	list-style: none;
 	min-width: 25px;
-	min-height: 25px;
+	max-width: 50px;
 	width:100%;
 	height: 11%;
+	min-height: 50px;
 	margin:4px 0;
 	border-radius: 2px;
 	background-color: white;
@@ -108,26 +124,26 @@ h1{
 	border-color: rgba(0,0,0,0.48) rgba(0,0,0,0.54) rgba(0,0,0,0.6);
 }
 .on-beat{
-	background: black !important;
+	background: pink !important;
 	z-index: 2;
 }
 .jooClicked{
-	background-color: rgba(245, 226, 242, 0.5) !important;
+	background-color: rgba(83, 183, 179, 0.2) !important;
 }
 .maxClicked{
-	background-color: rgba(226, 245, 231, 0.5) !important;
+	background-color: rgba(240, 112, 148, 0.2) !important;
 }
 .yiClicked{
-	background-color: rgba(245, 231, 231, 0.5) !important;
+	background-color: rgba(242, 163, 71, 0.2) !important;
 }
 .clicked{
-	background-color: #ffa676 !important;
+	background-color: #de75c9 !important;
 }
 .clicked-two{
-	background-color: #e69d00 !important;
+	background-color: #ee709c !important;
 }
 .clicked-three{
-	background-color: #ff4f46 !important;
+	background-color: #ee8270 !important;
 }
 .clicked-four{
 	background-color: #ff46b7 !important;
@@ -135,29 +151,28 @@ h1{
 /*============================DRAGGING AREA===========================*/
 #dragging-area article{
 	display: inline-block;
-	padding: 0 2%;
-	margin: 0 3%;
+	width:50px;
+	height: 50px;
 	color: black;
+	margin-right: 1%;
+	border-radius: 2px;
 }
 #dragging-area article:hover{
 	cursor: move;
 }
 #dragging-area article.ui-draggable-dragging { opacity:0.7; }
-
+#dragbutton01{
+	background: #de75c9;
+}
+#dragbutton02{
+	background: #ee709c;
+}
+#dragbutton03{
+	background: #ee8270;
+}
 #beat-wrapper ul li.hovered{
-	opacity: 0.5;
-}
-#voice-one{
-	background-color: #ffa676;
-}
-#voice-two{
-	background-color: #e69d00;
-}
-#voice-three{
-	background-color: #ff4f46;
-}
-#voice-four{
-	background-color: #ff46b7;
+	opacity: 0.3;
+	background-color: #b56969;
 }
 /*============================JOIN SCREEN=============================*/
 .join-wrapper{
@@ -197,6 +212,19 @@ h1{
 }
 #start{
 	text-align: center;
+	width:100%;
+	top:80%;
+	height: auto;
+	position:absolute;
+	display:block;
+}
+#quit{
+	text-align: center;
+	width:100%;
+	height: auto;
+	position:inherit;
+	display:block;
+	margin-top: 7%;
 }
 .button{
 	color: #fff;
@@ -204,7 +232,7 @@ h1{
 	font-weight: bold;
 	text-transform: uppercase;
 	background-color: black;
-	padding: 2% 3%;
+	padding: 20px 30px;
 }
 .button:hover{
 	opacity: 0.6;
@@ -212,6 +240,70 @@ h1{
 .in-use{
 	opacity: 0.5;
 	cursor: default;
+}
+#me{
+	max-width: 200px;
+	height: 200px;
+	margin-bottom: -126px;
+	margin-left: -195px;
+	display: inline-block;
+}
+.meIsJoo{
+	width: 200px;
+	background-image: url('../img/joojoo.png');
+}
+.meIsMax{
+	width: 200px;
+	background-image: url('../img/maxie.png');
+}
+.meIsYi{
+	width: 200px;
+	background-image: url('../img/yiyi.png');
+}
+/*buttom*/
+#y2{
+	margin-left: 20%;
+	background: url('../img/y2.png') no-repeat;
+	border: none;
+	width:151px;
+	height: 90px;
+	background-size: 300px;
+}
+#y2:hover{
+	background: url('../img/y2.png') no-repeat -150px 0;
+	background-size: 300px;
+}
+
+#j2{
+	margin-left: 20%;
+	background-size: 200px;
+	background: url('../img/j2.png')no-repeat;
+	border: none;
+	width:151px;
+	height: 90px;
+	background-size: 300px;
+	float:left;
+}
+#j2:hover{
+	background: url('../img/j2.png')no-repeat -150px 0;
+	background-size: 300px;
+}
+#m2{
+	margin-left: 20%;
+	background: url('../img/m2.png')no-repeat;
+	border: none;
+	width:151px;
+	height: 90px;
+	background-size: 300px;
+	float:left;
+}
+#m2:hover{
+	background: url('../img/m2.png')no-repeat -150px 0;
+	background-size: 300px;
+}
+#dragmsg-box{
+	width:80%;
+	margin:0 auto;
 }
 /*=====media queries===========*/
 @media screen and (max-width: 320px){

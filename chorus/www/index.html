@@ -4,11 +4,12 @@
 		<link rel="stylesheet" type="text/css" href="css/normalize.css">
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<script src="js/jquery-1.9.1.min.js"></script>
-		<script src="js/jquery-cookie.js"></script>
+		<script src="js/jquery-ui-1.10.2.custom.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script type="text/javascript" src="js/click-script.js"></script>
-		<script type="text/javascript" src="js/script.js"></script>
 
+		<link href='http://fonts.googleapis.com/css?family=Emilys+Candy' rel='stylesheet' type='text/css'>
+  		<link href='http://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet' type='text/css'>
 	</head>
 
 	<body>
@@ -16,25 +17,31 @@
 			<article class="join-wrapper">
 				<h1>Choose your mermaid voice</h1>
 					<ul>
-						<a href="#" id="joojoo"><li><img src="img/user.jpg">
-							<h2>Joojoo</h2>
-								<p>The cutest voice with tiny tone deaf.</p></li></a>
-						<a href="#" id="maxie"><li><img src="img/user.jpg">
-							<h2>Maxie</h2>
-								<p>The only voice with accurancy in pitch.</p></li></a>
-						<a href="#" id="yiyi"><li><img src="img/user.jpg">
-							<h2>Yiyi</h2>
-								<p>The hangover voice due to the beers last night.</p><li></a>
+						<a href="#" id="joojoo"><li>
+							<div id="j2"></div>
+							<img src="img/joojoo.png">
+							<h2></h2>
+								<p></p></li></a>
+						<a href="#" id="maxie"><li>
+							<div id="m2"></div>
+							<img src="img/maxie.png">
+							<h2></h2>
+								<p></p></li></a>
+						<a href="#" id="yiyi"><li>
+							<div id="y2"></div>
+							<img src="img/yiyi.png">
+							<h2></h2>
+								<p></p><li></a>
 					</ul>	
 						<a href="#screen2"><div id="start"><P class="button">start<p></div></a>
 			</article>
 		</section>
 
 		<section id="screen2">
-			<div style="display:block">
-				<button id="quit"><a href="#screen1">QUIT</a></button>
-			</div>
 			<section id="user-area">
+				<div id="jooHead"><img src="../img/joojoo.png"></div>
+				<div id="maxHead"><img src="../img/maxie.png"></div>
+				<div id="yiHead"><img src="../img/yiyi.png"></div>
 			</section>
 			
 			<section id="panel">
@@ -152,7 +159,18 @@
 						<li id="pitch-79"></li>
 						<li id="pitch-80"></li>
 					</ul>
+					<section id="dragmsg-box">
+						<hr><p id="dragmsg">Drag and Drop boxes below to the panel.</p><hr>
+					</seciton>
 				</div>
+				<section id="dragging-area">
+					<div id="me"></div>
+					<article id="dragbutton01"></article>
+					<article id="dragbutton02"></article>	
+					<article id="dragbutton03"></article>	
+				</section>
+
+				<div id="quit"><a href="#screen1" class="button">QUIT</a></div>
 
 			</section>
 

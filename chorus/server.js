@@ -83,9 +83,17 @@ socketServer.sockets.on('connection',function(socket){
 			}
 		}
 	});
-	socket.on('current state', function(data){
-		socket.broadcast.emit('current state', data);
-		socket.emit('current state', data);
+	socket.on('joo current state', function(data){
+		socket.broadcast.emit('joo current state', data);
+		//socket.emit('current state', data);
+	});
+	socket.on('max current state', function(data){
+		socket.broadcast.emit('max current state', data);
+		//socket.emit('current state', data);
+	});
+	socket.on('yi current state', function(data){
+		socket.broadcast.emit('yi current state', data);
+		//socket.emit('current state', data);
 	});
 	socket.on('someone left', function(data){
 		socket.broadcast.emit('someone left', data);
