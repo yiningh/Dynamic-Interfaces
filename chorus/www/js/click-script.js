@@ -1,3 +1,4 @@
+$(document).ready(function(){
 
 var beat;
 var startTime;
