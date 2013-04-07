@@ -98,5 +98,8 @@ socketServer.sockets.on('connection',function(socket){
 	socket.on('someone left', function(data){
 		socket.broadcast.emit('someone left', data);
 	});
+	// socket.on('disconnect',function(data) {
+	// 	socket.broadcast.emit('someone left', data);
+	// });
 	
 });

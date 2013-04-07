@@ -221,6 +221,7 @@ $(document).ready(function(){
 	});
 	$('#quit').click(function(){
         someoneLeft();
+        cancelScheduled();
 	});
 
     $('#dragging-area article').draggable({
@@ -342,10 +343,12 @@ $(document).ready(function(){
         if(vol == 0){
             vol = 1;
             $('#me').css('opacity', '1');
+            $('.mute').hide();
         }else
         if(vol == 1){
             vol = 0;
             $('#me').css('opacity', '0.5');
+            $('.mute').show();
         }
     });
 
@@ -361,6 +364,7 @@ function init() {
     $('#jooHead').hide();
     $('#maxHead').hide();
     $('#yiHead').hide();
+    $('.mute').hide();
 }
 
 function stopBeat(){
@@ -406,6 +410,10 @@ function sound(source){
         });
     }
     getSound.send();
+}
+
+function cancelScheduled(){
+    window.location.reload();
 }
 
 sound.prototype.play = function(time){
